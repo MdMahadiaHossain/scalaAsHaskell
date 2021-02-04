@@ -18,9 +18,14 @@ def fac: BigInt => BigInt = a => a match{
 }
 
 
-def tailFac : BigInt => BigInt => BigInt = param => accum => param match {
-  case p if p.intValue==0 => accum
-  case _ => tailFac(param-1)(accum*param)
+def tailFac : BigInt  => BigInt = param => {
+  @tailrec
+  def iter(x: BigInt, result: BigInt): BigInt = x match {
+    case x if x.intValue == 0 => result
+    case _ => iter(x - 1, result * x)
+  }
+  
+  iter(param, 1)
 }
 
 
@@ -32,5 +37,8 @@ def factorial(n: BigInt): BigInt = {
 
   iter(n, 1)
 }
+
+
+
 
 
